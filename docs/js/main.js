@@ -132,6 +132,33 @@
     });
 
 /*=========================================================================
+    Products Carousel
+=========================================================================*/
+	$('#products_carousel').owlCarousel({
+        loop: true,
+        autoplay: true,
+        smartSpeed: 500,
+        margin: 30,
+        nav: true,
+        navText: ['<i class="arrow_carrot-left"></i>', '<i class="arrow_carrot-right"></i>'],
+        dots: false,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            1024: {
+                items: 4
+            }
+        }
+    });
+
+/*=========================================================================
     Active Nice Select
 =========================================================================*/    
   $('select').niceSelect();
