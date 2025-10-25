@@ -40,6 +40,45 @@
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css" />
 
+    <style>
+      .time-selector-wrapper {
+        position: relative;
+      }
+
+      .time-dropdown {
+        position: relative;
+      }
+
+      .time-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #ddd;
+        border-top: none;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .time-option {
+        padding: 10px 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.2s;
+      }
+
+      .time-option:hover {
+        background-color: #f5f5f5;
+      }
+
+      .time-option:last-child {
+        border-bottom: none;
+      }
+    </style>
+
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
   </head>
   <body>
@@ -68,47 +107,29 @@
             <div id="mainmenu" class="mainmenu">
               <ul class="nav">
                 <li>
-                  <a data-scroll class="nav-link active" href="index.html"
+                  <a data-scroll class="nav-link" href="#header"
                     >Home<span class="sr-only">(current)</span></a
                   >
                 </li>
                 <li>
-                  <a href="about-us.html">About</a>
-                  <ul>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="about-company.html">About Company</a></li>
-                  </ul>
+                  <a data-scroll href="#pricing">Pricing</a>
                 </li>
                 <li>
-                  <a href="services.html">Services</a>
-                  <ul>
-                    <li><a href="services.html">Services 01</a></li>
-                    <li><a href="services-2.html">Services 02</a></li>
-                  </ul>
+                  <a data-scroll href="#products">Our Products</a>
                 </li>
                 <li>
-                  <a href="#">Pages</a>
-                  <ul>
-                    <li><a href="appointment.html">Appointment</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="team.html">Our Team</a></li>
-                    <li><a href="pricing.html">Our Pricing</a></li>
-                    <li><a href="404.html">404 Error</a></li>
-                  </ul>
+                  <a data-scroll href="#gallery">Gallery</a>
                 </li>
                 <li>
-                  <a href="#">Blog</a>
-                  <ul>
-                    <li><a href="blog-grid.html">Blog Grid</a></li>
-                    <li><a href="blog-classic.html">Blog Classic</a></li>
-                    <li><a href="blog-single.html">Blog Single</a></li>
-                  </ul>
+                  <a data-scroll href="#team">Our Team</a>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a data-scroll href="#contact">Contact</a></li>
               </ul>
             </div>
             <div class="header-btn">
-              <a href="#" class="menu-btn">Make Appointment</a>
+              <a data-scroll href="#appointment" class="menu-btn"
+                >Make Appointment</a
+              >
             </div>
           </div>
         </nav>
@@ -131,7 +152,9 @@
                 appreciate<br />
                 premium quality, time and flawless look.
               </p>
-              <a href="#" class="default_btn">Make Appointment</a>
+              <a data-scroll href="#appointment" class="default_btn"
+                >Make Appointment</a
+              >
             </div>
           </div>
         </li>
@@ -148,7 +171,9 @@
                 appreciate<br />
                 premium quality, time and flawless look.
               </p>
-              <a href="#" class="default_btn">Make Appointment</a>
+              <a data-scroll href="#appointment" class="default_btn"
+                >Make Appointment</a
+              >
             </div>
           </div>
         </li>
@@ -165,7 +190,9 @@
                 appreciate<br />
                 premium quality, time and flawless look.
               </p>
-              <a href="#" class="default_btn">Make Appointment</a>
+              <a data-scroll href="#appointment" class="default_btn"
+                >Make Appointment</a
+              >
             </div>
           </div>
         </li>
@@ -173,7 +200,7 @@
     </section>
     <!-- /.slider_section -->
 
-    <section class="pricing_section bg-grey bd-bottom padding">
+    <section id="pricing" class="pricing_section bg-grey bd-bottom padding">
       <div class="container">
         <div
           class="section_heading text-center mb-40 wow fadeInUp"
@@ -282,7 +309,7 @@
     </section>
     <!-- /. pricing_section -->
 
-    <section class="products_section padding">
+    <section id="products" class="products_section padding">
       <div class="container">
         <div
           class="section_heading text-center mb-40 wow fadeInUp"
@@ -419,16 +446,15 @@
     </section>
     <!-- /.products_section -->
 
-    <section class="book_section padding">
+    <section id="appointment" class="book_section padding">
       <div class="book_bg"></div>
       <div class="map_pattern"></div>
       <div class="container">
         <div class="row">
           <div class="col-md-6 offset-md-6">
             <form
-              action="appointment.php"
-              method="post"
               id="appointment_form"
+              novalidate
               class="form-horizontal appointment_form"
             >
               <div class="book_content">
@@ -448,6 +474,11 @@
                     placeholder="Name"
                     required
                   />
+                  <div
+                    id="name-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
                 </div>
                 <div class="col-md-6 padding-10">
                   <input
@@ -458,6 +489,11 @@
                     placeholder="Your Email"
                     required
                   />
+                  <div
+                    id="email-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
                 </div>
               </div>
               <div class="form-group row">
@@ -470,45 +506,270 @@
                     placeholder="Your Phone No"
                     required
                   />
+                  <div
+                    id="phone-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
                 </div>
                 <div class="col-md-6 padding-10">
                   <input
-                    type="text"
-                    id="app_free_time"
-                    name="app_free_time"
+                    type="date"
+                    id="app_date"
+                    name="app_date"
                     class="form-control"
-                    placeholder="Your Free Time"
                     required
                   />
+                  <div
+                    id="date-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
                 </div>
               </div>
               <div class="form-group row">
+                <div class="col-md-6 padding-10">
+                  <div class="time-selector-wrapper">
+                    <div class="time-dropdown">
+                      <input
+                        type="text"
+                        id="app_time_display"
+                        class="form-control"
+                        placeholder="Choose Time"
+                        readonly
+                        onclick="toggleTimeOptions()"
+                      />
+                      <input
+                        type="hidden"
+                        id="app_time"
+                        name="app_time"
+                        required
+                      />
+                      <div
+                        id="time-error"
+                        class="invalid-feedback"
+                        style="display: none"
+                      ></div>
+                      <div
+                        id="time-options"
+                        class="time-options"
+                        style="
+                          display: none;
+                          max-height: 200px;
+                          overflow-y: auto;
+                          border: 1px solid #ddd;
+                          background: white;
+                          position: absolute;
+                          width: 100%;
+                          z-index: 1000;
+                        "
+                      >
+                        <div
+                          class="time-option"
+                          data-value="09:00"
+                          onclick="selectTime('09:00', '09:00 AM')"
+                        >
+                          09:00 AM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="09:30"
+                          onclick="selectTime('09:30', '09:30 AM')"
+                        >
+                          09:30 AM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="10:00"
+                          onclick="selectTime('10:00', '10:00 AM')"
+                        >
+                          10:00 AM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="10:30"
+                          onclick="selectTime('10:30', '10:30 AM')"
+                        >
+                          10:30 AM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="11:00"
+                          onclick="selectTime('11:00', '11:00 AM')"
+                        >
+                          11:00 AM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="11:30"
+                          onclick="selectTime('11:30', '11:30 AM')"
+                        >
+                          11:30 AM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="12:00"
+                          onclick="selectTime('12:00', '12:00 PM')"
+                        >
+                          12:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="12:30"
+                          onclick="selectTime('12:30', '12:30 PM')"
+                        >
+                          12:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="13:00"
+                          onclick="selectTime('13:00', '01:00 PM')"
+                        >
+                          01:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="13:30"
+                          onclick="selectTime('13:30', '01:30 PM')"
+                        >
+                          01:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="14:00"
+                          onclick="selectTime('14:00', '02:00 PM')"
+                        >
+                          02:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="14:30"
+                          onclick="selectTime('14:30', '02:30 PM')"
+                        >
+                          02:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="15:00"
+                          onclick="selectTime('15:00', '03:00 PM')"
+                        >
+                          03:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="15:30"
+                          onclick="selectTime('15:30', '03:30 PM')"
+                        >
+                          03:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="16:00"
+                          onclick="selectTime('16:00', '04:00 PM')"
+                        >
+                          04:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="16:30"
+                          onclick="selectTime('16:30', '04:30 PM')"
+                        >
+                          04:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="17:00"
+                          onclick="selectTime('17:00', '05:00 PM')"
+                        >
+                          05:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="17:30"
+                          onclick="selectTime('17:30', '05:30 PM')"
+                        >
+                          05:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="18:00"
+                          onclick="selectTime('18:00', '06:00 PM')"
+                        >
+                          06:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="18:30"
+                          onclick="selectTime('18:30', '06:30 PM')"
+                        >
+                          06:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="19:00"
+                          onclick="selectTime('19:00', '07:00 PM')"
+                        >
+                          07:00 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="19:30"
+                          onclick="selectTime('19:30', '07:30 PM')"
+                        >
+                          07:30 PM
+                        </div>
+                        <div
+                          class="time-option"
+                          data-value="20:00"
+                          onclick="selectTime('20:00', '08:00 PM')"
+                        >
+                          08:00 PM
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="col-md-6 padding-10">
                   <select
                     class="form-control"
                     id="app_services"
                     name="app_services"
                   >
-                    <option>Services</option>
-                    <option>Hair Styling</option>
-                    <option>Shaving</option>
-                    <option>Face Mask</option>
-                    <option>Hair Wash</option>
-                    <option>Beard Triming</option>
+                    <option value="">Services</option>
+                    <option value="HAIRCUT">Hair Styling</option>
+                    <option value="SHAVING">Shaving</option>
+                    <option value="BEARD_TRIM">Beard Trim</option>
                   </select>
+                  <div
+                    id="services-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
                 </div>
+              </div>
+              <div class="form-group row">
                 <div class="col-md-6 padding-10">
                   <select
                     class="form-control"
                     id="app_barbers"
                     name="app_barbers"
                   >
-                    <option>Choose Barbers</option>
-                    <option>Michel Brown</option>
-                    <option>Jonathan Smith</option>
-                    <option>Jack Tosan</option>
-                    <option>Martin Lane</option>
+                    <option value="">Choose Barbers</option>
+                    <option value="e7b70c94-d594-44d1-8658-bc304c7eb8f0">
+                      Momo
+                    </option>
+                    <option value="69d43c86-bba5-4712-becb-2864fd8644a1">
+                      Ammar
+                    </option>
                   </select>
+                  <div
+                    id="barbers-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
+                </div>
+                <div class="col-md-6 padding-10">
+                  <!-- Espace vide pour l'équilibre du layout -->
                 </div>
               </div>
               <button id="app_submit" class="default_btn" type="submit">
@@ -522,7 +783,7 @@
     </section>
     <!-- /.book_section -->
 
-    <section class="gallery_section bg-grey padding">
+    <section id="gallery" class="gallery_section bg-grey padding">
       <div class="container">
         <div
           class="section_heading text-center mb-40 wow fadeInUp"
@@ -733,7 +994,7 @@
     </section>
     <!-- /.team_section -->
 
-    <section class="comments_section padding">
+    <section id="contact" class="comments_section padding">
       <div class="container">
         <div
           class="section_heading text-center mb-40 wow fadeInUp"
@@ -904,5 +1165,32 @@
     <script src="js/appointment.js"></script>
     <!-- Main JS -->
     <script src="js/main.js"></script>
+
+    <script>
+      function toggleTimeOptions() {
+        var options = document.getElementById("time-options");
+        if (options.style.display === "none" || options.style.display === "") {
+          options.style.display = "block";
+        } else {
+          options.style.display = "none";
+        }
+      }
+
+      function selectTime(value, display) {
+        document.getElementById("app_time").value = value;
+        document.getElementById("app_time_display").value = display;
+        document.getElementById("time-options").style.display = "none";
+      }
+
+      // Fermer la liste déroulante quand on clique ailleurs
+      document.addEventListener("click", function (event) {
+        var timeDropdown = document.querySelector(".time-dropdown");
+        var timeOptions = document.getElementById("time-options");
+
+        if (!timeDropdown.contains(event.target)) {
+          timeOptions.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>
