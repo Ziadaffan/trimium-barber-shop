@@ -513,6 +513,36 @@
                   ></div>
                 </div>
                 <div class="col-md-6 padding-10">
+                  <select
+                    class="form-control"
+                    id="app_barbers"
+                    name="app_barbers"
+                  >
+                    <option value="">Choose Barbers</option>
+                  </select>
+                  <div
+                    id="barbers-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 padding-10">
+                  <select
+                    class="form-control"
+                    id="app_services"
+                    name="app_services"
+                  >
+                    <option value="">Services</option>
+                  </select>
+                  <div
+                    id="services-error"
+                    class="invalid-feedback"
+                    style="display: none"
+                  ></div>
+                </div>
+                <div class="col-md-6 padding-10">
                   <input
                     type="date"
                     id="app_date"
@@ -729,48 +759,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 padding-10">
-                  <select
-                    class="form-control"
-                    id="app_services"
-                    name="app_services"
-                  >
-                    <option value="">Services</option>
-                    <option value="HAIRCUT">Hair Styling</option>
-                    <option value="SHAVING">Shaving</option>
-                    <option value="BEARD_TRIM">Beard Trim</option>
-                  </select>
-                  <div
-                    id="services-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6 padding-10">
-                  <select
-                    class="form-control"
-                    id="app_barbers"
-                    name="app_barbers"
-                  >
-                    <option value="">Choose Barbers</option>
-                    <option value="e7b70c94-d594-44d1-8658-bc304c7eb8f0">
-                      Momo
-                    </option>
-                    <option value="69d43c86-bba5-4712-becb-2864fd8644a1">
-                      Ammar
-                    </option>
-                  </select>
-                  <div
-                    id="barbers-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-                <div class="col-md-6 padding-10">
-                  <!-- Espace vide pour l'équilibre du layout -->
-                </div>
+                <div class="col-md-6 padding-10"></div>
               </div>
               <button id="app_submit" class="default_btn" type="submit">
                 Make Appointment
@@ -1164,7 +1153,7 @@
     <!-- Appointment JS -->
     <script src="js/appointment.js"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 
     <script>
       function toggleTimeOptions() {
@@ -1190,6 +1179,16 @@
         if (!timeDropdown.contains(event.target)) {
           timeOptions.style.display = "none";
         }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayString = yesterday.toISOString().split("T")[0];
+
+        document
+          .getElementById("app_date")
+          .setAttribute("min", yesterdayString);
       });
     </script>
   </body>
