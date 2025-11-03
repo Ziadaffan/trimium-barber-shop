@@ -1,58 +1,67 @@
 "use strict";
 
+function desabledInputs() {
+  $("#app_services").prop("disabled", true);
+  $("#app_date").prop("disabled", true);
+  $("#app_time_display").prop("disabled", true);
+  $("#app_time").prop("disabled", true);
+}
+
 $(function () {
   var form = $("#appointment_form");
 
   var formMessages = $("#msg-status");
 
-    $(form).submit(function (event) {
-      event.preventDefault();
+  $(form).submit(function (event) {
+    event.preventDefault();
 
-      $(".invalid-feedback").hide();
-      $(".form-control").removeClass("is-invalid is-valid");
+    $(".invalid-feedback").hide();
+    $(".form-control").removeClass("is-invalid is-valid");
 
-      if (!validateForm()) {
+    if (!validateForm()) {
+      $(formMessages).removeClass("alert-success");
+      $(formMessages).addClass("alert-danger");
+      $(formMessages).text("Please correct the errors below");
+      return;
+    }
+
+    var formData = {
+      name: $("#app_name").val(),
+      email: $("#app_email").val(),
+      phone: $("#app_phone").val(),
+      date: $("#app_date").val(),
+      time: $("#app_time_display").val(),
+      serviceType: $("#app_services").val(),
+      barberId: $("#app_barbers").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/api/reservations",
+      data: formData,
+    })
+      .done(function (response) {
+        $(formMessages).removeClass("alert-danger");
+        $(formMessages).addClass("alert-success");
+        $(formMessages).text("Appointment booked successfully!");
+
+        resetForm();
+        desabledInputs();
+      })
+      .fail(function (data) {
         $(formMessages).removeClass("alert-success");
         $(formMessages).addClass("alert-danger");
-        $(formMessages).text("Please correct the errors below");
-        return;
-      }
 
-      var formData = {
-        name: $("#app_name").val(),
-        email: $("#app_email").val(),
-        phone: $("#app_phone").val(),
-        date: $("#app_date").val(),
-        time: $("#app_time_display").val(),
-        serviceType: $("#app_services").val(),
-        barberId: $("#app_barbers").val(),
-      };
-
-      $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/api/reservations",
-        data: formData,
-      })
-        .done(function (response) {
-          $(formMessages).removeClass("alert-danger");
-          $(formMessages).addClass("alert-success");
-          $(formMessages).text("Appointment booked successfully!");
-          
-          $("#appointment_form")[0].reset();
-          $("#app_time_display").val("");
-          $("#app_time").val("");
-        })
-        .fail(function (data) {
-          $(formMessages).removeClass("alert-success");
-          $(formMessages).addClass("alert-danger");
-
-          if (data.responseJSON && data.responseJSON.message) {
-            $(formMessages).text(data.responseJSON.message);
-          } else {
-            $(formMessages).text("Oops! An error occurred and your appointment could not be booked.");
-          }
-        });
-    });
+        if (data.responseJSON && data.responseJSON.message) {
+          $(formMessages).text(data.responseJSON.message);
+        } else {
+          $(formMessages).text(
+            "Oops! An error occurred and your appointment could not be booked."
+          );
+        }
+        desabledInputs();
+      });
+  });
 
   $(
     "#app_name, #app_email, #app_phone, #app_date, #app_time_display, #app_services, #app_barbers"
@@ -64,6 +73,17 @@ $(function () {
     $(this).removeClass("is-invalid is-valid");
   });
 });
+
+function resetForm() {
+  $("#appointment_form")[0].reset();
+  $("#app_time_display").val("");
+  $("#app_time").val("");
+
+  $("#app_services").prop("selectedIndex", 0);
+  $("#app_barbers").prop("selectedIndex", 0);
+  $("#app_services").niceSelect("update");
+  $("#app_barbers").niceSelect("update");
+}
 
 const validateName = (name) => {
   return name.length > 0 && name.length <= 50;

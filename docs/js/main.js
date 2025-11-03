@@ -13,10 +13,65 @@
     getAvailableTimes($("#app_date").val());
   });
 
+  $(document).on("change", "#app_barbers", function () {
+    const selectedBarber = $("#app_barbers").val();
+    if (selectedBarber) {
+      enableServiceInputs();
+    }
+  });
+
+  $(document).on("change", "#app_services", function () {
+    const selectedService = $("#app_services").val();
+    if (selectedService) {
+      enableDateInputs();
+    }
+  });
+
+  $(document).on("change", "#app_barbers, #app_services", function () {
+    const selectedDate = $("#app_date").val();
+    if (selectedDate) {
+      getAvailableTimes(selectedDate);
+    }
+  });
+
   $(document).ready(function () {
+    desabledInputs();
     getBarbers();
     getServices();
+    resetForm();
   });
+
+  function resetForm() {
+    $("#appointment_form")[0].reset();
+    $("#app_time_display").val("");
+    $("#app_time").val("");
+
+    $("#app_services").prop("selectedIndex", 0);
+    $("#app_barbers").prop("selectedIndex", 0);
+    $("#app_services").niceSelect("update");
+    $("#app_barbers").niceSelect("update");
+  }
+
+  function enableServiceInputs() {
+    $("#app_services").prop("disabled", false);
+    $("#app_services").niceSelect("update");
+  }
+
+  function enableDateInputs() {
+    $("#app_date").prop("disabled", false);
+    $("#app_time_display").prop("disabled", false);
+    $("#app_time").prop("disabled", false);
+    $("#app_date").niceSelect("update");
+    $("#app_time_display").niceSelect("update");
+    $("#app_time").niceSelect("update");
+  }
+
+  function desabledInputs() {
+    $("#app_services").prop("disabled", true);
+    $("#app_date").prop("disabled", true);
+    $("#app_time_display").prop("disabled", true);
+    $("#app_time").prop("disabled", true);
+  }
 
   function getBarbers() {
     $.ajax({
@@ -83,10 +138,83 @@
     })
       .done(function (response) {
         console.log(response);
+        displayAvailableTimes(response);
       })
       .fail(function (error) {
         console.log("Erreur chargement horaires disponibles:", error);
+        clearTimeOptions();
       });
+  }
+
+  function displayAvailableTimes(availableTimes) {
+    const timeOptionsContainer = $("#time-options");
+
+    if (timeOptionsContainer.length === 0) {
+      console.log("Time selector not found on this page");
+      return;
+    }
+
+    timeOptionsContainer.empty();
+
+    let times = [];
+    if (Array.isArray(availableTimes)) {
+      times = availableTimes;
+    } else if (availableTimes && Array.isArray(availableTimes.times)) {
+      times = availableTimes.times;
+    } else if (availableTimes && Array.isArray(availableTimes.availableTimes)) {
+      times = availableTimes.availableTimes;
+    }
+
+    if (times.length === 0) {
+      timeOptionsContainer.append(
+        '<div class="time-option" style="padding: 10px; text-align: center; color: #999;">Aucun horaire disponible</div>'
+      );
+      return;
+    }
+
+    times.forEach(function (time) {
+      const timeValue =
+        typeof time === "string" ? time : time.time || time.value;
+      const timeDisplay = formatTimeDisplay(timeValue);
+
+      const timeOption = $(
+        '<div class="time-option" data-value="' +
+          timeValue +
+          '" onclick="selectTime(\'' +
+          timeValue +
+          "', '" +
+          timeDisplay +
+          "')\">" +
+          timeDisplay +
+          "</div>"
+      );
+
+      timeOptionsContainer.append(timeOption);
+    });
+  }
+
+  function clearTimeOptions() {
+    const timeOptionsContainer = $("#time-options");
+    if (timeOptionsContainer.length > 0) {
+      timeOptionsContainer.empty();
+    }
+  }
+
+  function formatTimeDisplay(time) {
+    if (!time || typeof time !== "string") return time;
+
+    const parts = time.split(":");
+    if (parts.length !== 2) return time;
+
+    const hours = parseInt(parts[0], 10);
+    const minutes = parts[1];
+
+    if (isNaN(hours)) return time;
+
+    const period = hours >= 12 ? "PM" : "AM";
+    const displayHours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+
+    return `${displayHours.toString().padStart(2, "0")}:${minutes} ${period}`;
   }
 
   /*=========================================================================
@@ -187,7 +315,6 @@
     Isotope Active
 =========================================================================*/
   $(".portfolio_items").imagesLoaded(function () {
-    // Add isotope click function
     $(".gallery_filter li").on("click", function () {
       $(".gallery_filter li").removeClass("active");
       $(this).addClass("active");
