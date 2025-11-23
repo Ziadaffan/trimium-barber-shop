@@ -45,6 +45,9 @@
     }
     .testimonial_section{ padding: 100px 0; }
     .sidebar-wrap{ padding-left: 0; }
+    .team_section .team_members .team_member{
+        height: 380px;
+    }
 
 }
 /* ---- End of max-width 992px CSS ---- */
@@ -108,6 +111,20 @@
     .about_img{
         display: none;
     }
+    .team_section .team_members .team_member{
+        height: auto;
+        overflow: visible;
+    }
+    .team_section .team_members .team_member .overlay{
+        display: none;
+    }
+    .team_section .team_members .team_member .mobile-info{
+        display: block;
+    }
+    .team_section .team_members .team_member img{
+        height: 250px;
+        display: block;
+    }
     .cta_section .cta_content h2 {
         font-size: 32px;
         line-height: 46px;
@@ -163,6 +180,23 @@
     }
     .reserv_form .form-group .col-xs-6:first-child{
         margin-bottom: 15px;
+    }
+    .team_section .team_members .team_member{
+        height: auto;
+        margin-bottom: 20px;
+        overflow: visible;
+    }
+    .team_section .team_members .team_member img{
+        height: 220px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+    .team_section .team_members .team_member .overlay{
+        display: none;
+    }
+    .team_section .team_members .team_member .mobile-info{
+        display: block;
     }
 
 }
