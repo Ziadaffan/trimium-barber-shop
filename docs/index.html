@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-  <!--<![endif]-->
+<html class="scroll-smooth" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="BarberShop & Hair Salon HTML Template" />
-    <meta name="author" content="DynamicLayers" />
-
-    <title>Barber Shop || BarberShop Hair Salon HTML Template</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TRIMIUM Barber Shop - Premium Grooming Experience"
+    />
+    <meta name="author" content="TRIMIUM" />
+    <title>TRIMIUM - Elegant Barber Shop</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <!-- Bootstrap CSS (for Products and Gallery sections) -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Elegant Font Icons CSS -->
     <link rel="stylesheet" href="css/elegant-font-icons.css" />
     <!-- Elegant Line Icons CSS -->
@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="css/themify-icons.css" />
     <!-- Barber Icons CSS -->
     <link rel="stylesheet" href="css/barber-icons.css" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- animate CSS -->
     <link rel="stylesheet" href="css/animate.min.css" />
     <!-- Venobox CSS -->
@@ -33,879 +31,1385 @@
     <link rel="stylesheet" href="css/nice-select.css" />
     <!-- OWL-Carousel CSS -->
     <link rel="stylesheet" href="css/owl.carousel.css" />
-    <!-- Slick Nav CSS -->
-    <link rel="stylesheet" href="css/slicknav.min.css" />
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/main.css" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
 
     <style>
+      .font-display {
+        font-family: "Playfair Display", serif;
+      }
+      .font-body {
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Preloader */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a0908;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #preloader.loaded {
+        display: none;
+      }
+
+      /* Time selector styles */
       .time-selector-wrapper {
         position: relative;
       }
-
       .time-dropdown {
         position: relative;
       }
-
       .time-options {
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: white;
-        border: 1px solid #ddd;
+        background: rgba(0, 0, 0, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-top: none;
         max-height: 200px;
         overflow-y: auto;
         z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 0 0 0.375rem 0.375rem;
       }
-
       .time-option {
         padding: 10px 15px;
         cursor: pointer;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         transition: background-color 0.2s;
+        color: #fff;
       }
-
       .time-option:hover {
-        background-color: #f5f5f5;
+        background-color: rgba(185, 139, 89, 0.3);
       }
-
       .time-option:last-child {
         border-bottom: none;
       }
+
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Form validation styles */
+      .form-control.is-invalid {
+        border-color: #ef4444;
+      }
+      .form-control.is-valid {
+        border-color: #10b981;
+      }
+      .invalid-feedback {
+        display: block;
+        color: #fca5a5;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+
+      /* Select dropdown styling for dark background */
+      select option {
+        background: rgba(0, 0, 0, 0.95);
+        color: #fff;
+      }
+
+      /* Date input styling */
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+      }
+
+      /* Ensure primary color buttons are correct */
+      .bg-primary {
+        background-color: #b98b59 !important;
+      }
+      .text-primary {
+        color: #b98b59 !important;
+      }
+
+      /* Override button hover colors to use gold instead of blue */
+      button:hover,
+      button:focus,
+      button:active,
+      a.bg-primary:hover,
+      a.bg-primary:focus,
+      a.bg-primary:active,
+      button.bg-primary:hover,
+      button.bg-primary:focus,
+      button.bg-primary:active {
+        background-color: #a67a4a !important;
+        border-color: #a67a4a !important;
+      }
+
+      /* Remove any blue outline/ring on focus and use gold */
+      button:focus,
+      a:focus,
+      button.bg-primary:focus,
+      a.bg-primary:focus {
+        outline: 2px solid #b98b59 !important;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px rgba(185, 139, 89, 0.3) !important;
+      }
+
+      /* Override Tailwind default blue hover states */
+      button.hover\:bg-blue-500:hover,
+      a.hover\:bg-blue-500:hover {
+        background-color: #b98b59 !important;
+      }
+
+      /* Ensure all buttons with primary class maintain gold on hover */
+      [class*="bg-primary"]:hover {
+        background-color: #a67a4a !important;
+      }
+
+      /* Override any blue colors from browser defaults or Tailwind */
+      *:focus {
+        --tw-ring-color: rgba(185, 139, 89, 0.5) !important;
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline-color: #b98b59 !important;
+      }
+
+      /* Sticky header styles */
+      header {
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Add padding to hero section to account for fixed header */
+      .hero-section {
+        padding-top: 100px;
+      }
+
+      /* Mobile Menu Styles */
+      #mobile-menu.active {
+        transform: translateX(0);
+      }
+
+      #mobile-menu {
+        overflow-y: auto;
+      }
+
+      /* Prevent body scroll when mobile menu is open */
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      /* Product section hover effects */
+      #products .group:hover .group-hover\:scale-110 {
+        transform: scale(1.15);
+      }
+
+      /* Ensure owl carousel items work with Tailwind */
+      #products_carousel.owl-carousel {
+        display: block;
+      }
+
+      #products_carousel .owl-item {
+        padding: 0 8px;
+      }
+
+      @media (min-width: 640px) {
+        #products_carousel .owl-item {
+          padding: 0 12px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        #products_carousel .owl-item {
+          padding: 0 15px;
+        }
+      }
+
+      /* Products Carousel Navigation - Updated for Tailwind section */
+      #products .owl-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      #products .owl-prev,
+      #products .owl-next {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: #b98b59 !important;
+        color: #fff !important;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        pointer-events: all;
+        box-shadow: 0 4px 15px rgba(185, 139, 89, 0.3);
+      }
+
+      @media (min-width: 768px) {
+        #products .owl-prev,
+        #products .owl-next {
+          width: 50px;
+          height: 50px;
+          font-size: 18px;
+        }
+      }
+
+      #products .owl-prev {
+        left: -15px;
+      }
+
+      #products .owl-next {
+        right: -15px;
+      }
+
+      @media (min-width: 768px) {
+        #products .owl-prev {
+          left: -25px;
+        }
+
+        #products .owl-next {
+          right: -25px;
+        }
+      }
+
+      #products .owl-prev:hover,
+      #products .owl-next:hover {
+        background-color: #a67a4a !important;
+        color: #fff !important;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(185, 139, 89, 0.4);
+      }
+
+      /* Hide navigation arrows on mobile */
+      @media (max-width: 767px) {
+        #products .owl-nav {
+          display: none !important;
+        }
+      }
+
+      /* Show navigation arrows on tablet and desktop */
+      @media (min-width: 768px) {
+        #products .owl-nav {
+          display: block !important;
+        }
+      }
+
+      /* Adjust navigation position on tablet */
+      @media (min-width: 768px) and (max-width: 1024px) {
+        #products .owl-prev {
+          left: 5px;
+        }
+
+        #products .owl-next {
+          right: 5px;
+        }
+      }
     </style>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#b98b59",
+              "background-light": "#f8f6f2",
+              "background-dark": "#1a1a1a",
+            },
+            fontFamily: {
+              display: ["Playfair Display", "serif"],
+              body: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.375rem",
+            },
+          },
+        },
+      };
+    </script>
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
   </head>
-  <body>
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-        your experience.
-      </p>
-    <![endif]-->
-
+  <body
+    class="font-body bg-background-light dark:bg-background-dark text-gray-700 dark:text-gray-300"
+  >
+    <!-- Preloader -->
     <div id="preloader">
       <div class="loader">
         <img src="img/loading.gif" width="80" alt="" />
       </div>
     </div>
-    <!-- Preloader -->
 
-    <header id="header" class="header-section">
-      <div class="container">
-        <nav class="navbar">
-          <a href="#" class="navbar-brand"
-            ><img src="img/logo.png" alt="Barbershop"
-          /></a>
-
-          <div class="d-flex menu-wrap align-items-center">
-            <div id="mainmenu" class="mainmenu">
-              <ul class="nav">
-                <li>
-                  <a data-scroll class="nav-link" href="#header"
-                    >Home<span class="sr-only">(current)</span></a
-                  >
-                </li>
-                <li>
-                  <a data-scroll href="#pricing">Pricing</a>
-                </li>
-                <li>
-                  <a data-scroll href="#products">Our Products</a>
-                </li>
-                <li>
-                  <a data-scroll href="#gallery">Gallery</a>
-                </li>
-                <li>
-                  <a data-scroll href="#team">Our Team</a>
-                </li>
-                <li><a data-scroll href="#contact">Contact</a></li>
-              </ul>
-            </div>
-            <div class="header-btn">
-              <a data-scroll href="#appointment" class="menu-btn"
-                >Make Appointment</a
-              >
-            </div>
-          </div>
+    <!-- Header -->
+    <header
+      id="header"
+      class="fixed top-0 left-0 right-0 z-50 p-6 md:px-12 bg-gradient-to-b from-black/50 to-transparent transition-all duration-300"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+          <img src="img/logo.png" alt="TRIMIUM" class="w-30 h-20" />
+        </div>
+        <nav class="hidden md:flex items-center space-x-8 text-white">
+          <a class="hover:text-primary transition-colors" href="#header"
+            >Home</a
+          >
+          <a class="hover:text-primary transition-colors" href="#pricing"
+            >Pricing</a
+          >
+          <a class="hover:text-primary transition-colors" href="#products"
+            >Our Products</a
+          >
+          <a class="hover:text-primary transition-colors" href="#gallery"
+            >Gallery</a
+          >
+          <a class="hover:text-primary transition-colors" href="#team"
+            >Our Team</a
+          >
+          <a class="hover:text-primary transition-colors" href="#contact"
+            >Contact</a
+          >
         </nav>
+        <a
+          class="hidden md:inline-block bg-primary text-white py-2 px-6 rounded-full hover:opacity-90 transition-opacity font-body"
+          href="#appointment"
+        >
+          Make Appointment
+        </a>
+        <button
+          class="md:hidden text-white hover:text-primary transition-colors"
+          id="mobile-menu-btn"
+        >
+          <span class="material-icons text-3xl">menu</span>
+        </button>
       </div>
     </header>
-    <!--.header-section -->
 
-    <section class="slider_section">
-      <ul id="main-slider" class="owl-carousel main_slider">
-        <li
-          class="main_slide d-flex align-items-center"
-          style="background-image: url(img/img4.jpeg)"
-        >
-          <div class="container">
-            <div class="slider_content">
-              <h3>Its Not Just a Haircut, Its an Experience.</h3>
-              <h1>Being a barber is about <br />taking care of the people.</h1>
-              <p>
-                Our barbershop is the territory created purely for males who
-                appreciate<br />
-                premium quality, time and flawless look.
-              </p>
-              <a data-scroll href="#appointment" class="default_btn"
-                >Make Appointment</a
-              >
-            </div>
-          </div>
-        </li>
-        <li
-          class="main_slide d-flex align-items-center"
-          style="background-image: url(img/img2.jpeg)"
-        >
-          <div class="container">
-            <div class="slider_content">
-              <h3>Classic Hair Style & Shaves.</h3>
-              <h1>Our hair styles<br />enhances your smile.</h1>
-              <p>
-                Our barbershop is the territory created purely for males who
-                appreciate<br />
-                premium quality, time and flawless look.
-              </p>
-              <a data-scroll href="#appointment" class="default_btn"
-                >Make Appointment</a
-              >
-            </div>
-          </div>
-        </li>
-        <li
-          class="main_slide d-flex align-items-center"
-          style="background-image: url(img/img3.jpeg)"
-        >
-          <div class="container">
-            <div class="slider_content">
-              <h3>Its Not Just a Haircut, Its an Experience.</h3>
-              <h1>Where mens want <br />to look there very best.</h1>
-              <p>
-                Our barbershop is the territory created purely for males who
-                appreciate<br />
-                premium quality, time and flawless look.
-              </p>
-              <a data-scroll href="#appointment" class="default_btn"
-                >Make Appointment</a
-              >
-            </div>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <!-- /.slider_section -->
-
-    <section id="pricing" class="pricing_section bg-grey bd-bottom padding">
-      <div class="container">
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+    >
+      <div class="flex flex-col h-full">
+        <!-- Mobile Menu Header -->
         <div
-          class="section_heading text-center mb-40 wow fadeInUp"
-          data-wow-delay="300ms"
+          class="flex justify-between items-center p-6 border-b border-white/10"
         >
-          <h3>Our Premium Services</h3>
-          <h2>Our Pricing</h2>
-          <div class="heading-line"></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-6 sm-padding">
-            <div class="price_wrap">
-              <h3>Standard Services</h3>
-              <ul class="price_list">
-                <li>
-                  <h4>Haircut</h4>
-                  <p>Includes professional haircut and hair wash on demand.</p>
-                  <span class="price">35 $</span>
-                </li>
-                <li>
-                  <h4>Haircut and Beard</h4>
-                  <p>
-                    Includes professional haircut and beard trim, beard
-                    hydration, and hair wash on demand.
-                  </p>
-                  <span class="price">44 $</span>
-                </li>
-                <li>
-                  <h4>Student Haircut</h4>
-                  <p>Includes professional haircut and hair wash on demand.</p>
-                  <span class="price">30 $</span>
-                </li>
-                <li>
-                  <h4>Kids Haircut</h4>
-                  <p>Includes professional haircut.</p>
-                  <span class="price">25 $</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 sm-padding">
-            <div class="price_wrap">
-              <h3>TRIMIUM Services</h3>
-              <ul class="price_list">
-                <li>
-                  <h4>TRIMIUM Haircut</h4>
-                  <p>
-                    Includes professional haircut and facial care (wash and
-                    hydration), small facial massage, and hair wash.
-                  </p>
-                  <span class="price">50 $</span>
-                </li>
-                <li>
-                  <h4>TRIMIUM Haircut and Beard</h4>
-                  <p>
-                    Includes professional haircut and beard trim, beard
-                    hydration, and facial care (wash and hydration).
-                  </p>
-                  <span class="price">65 $</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /. pricing_section -->
-
-    <section id="products" class="products_section padding">
-      <div class="container">
-        <div
-          class="section_heading text-center mb-40 wow fadeInUp"
-          data-wow-delay="300ms"
-        >
-          <h3>Premium Quality Products</h3>
-          <h2>Our Products</h2>
-          <div class="heading-line"></div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="products_wrapper">
-              <ul id="products_carousel" class="products_items owl-carousel">
-                <li class="product_item">
-                  <a href="products.html" class="product_link">
-                    <div class="product_box">
-                      <div class="product_image">
-                        <img src="img/product.png" alt="Premium Hair Gel" />
-                        <div class="product_overlay">
-                          <span class="product_btn">View Details</span>
-                        </div>
-                      </div>
-                      <div class="product_content">
-                        <h4>Premium Hair Gel</h4>
-                        <p>
-                          Professional styling gel for perfect hold and shine.
-                        </p>
-                        <span class="product_price">$15.99</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="product_item">
-                  <a href="products.html" class="product_link">
-                    <div class="product_box">
-                      <div class="product_image">
-                        <img src="img/product.png" alt="Beard Oil" />
-                        <div class="product_overlay">
-                          <span class="product_btn">View Details</span>
-                        </div>
-                      </div>
-                      <div class="product_content">
-                        <h4>Beard Oil</h4>
-                        <p>
-                          Natural beard oil for soft and healthy facial hair.
-                        </p>
-                        <span class="product_price">$12.99</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="product_item">
-                  <a href="products.html" class="product_link">
-                    <div class="product_box">
-                      <div class="product_image">
-                        <img src="img/product.png" alt="Shaving Cream" />
-                        <div class="product_overlay">
-                          <span class="product_btn">View Details</span>
-                        </div>
-                      </div>
-                      <div class="product_content">
-                        <h4>Shaving Cream</h4>
-                        <p>
-                          Luxury shaving cream for smooth and comfortable shave.
-                        </p>
-                        <span class="product_price">$18.99</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="product_item">
-                  <a href="products.html" class="product_link">
-                    <div class="product_box">
-                      <div class="product_image">
-                        <img src="img/product.png" alt="Hair Pomade" />
-                        <div class="product_overlay">
-                          <span class="product_btn">View Details</span>
-                        </div>
-                      </div>
-                      <div class="product_content">
-                        <h4>Hair Pomade</h4>
-                        <p>
-                          Classic pomade for vintage hairstyles and strong hold.
-                        </p>
-                        <span class="product_price">$14.99</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="product_item">
-                  <a href="products.html" class="product_link">
-                    <div class="product_box">
-                      <div class="product_image">
-                        <img src="img/product.png" alt="Face Moisturizer" />
-                        <div class="product_overlay">
-                          <span class="product_btn">View Details</span>
-                        </div>
-                      </div>
-                      <div class="product_content">
-                        <h4>Face Moisturizer</h4>
-                        <p>Daily moisturizer for healthy and refreshed skin.</p>
-                        <span class="product_price">$16.99</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="product_item">
-                  <a href="products.html" class="product_link">
-                    <div class="product_box">
-                      <div class="product_image">
-                        <img src="img/product.png" alt="Hair Shampoo" />
-                        <div class="product_overlay">
-                          <span class="product_btn">View Details</span>
-                        </div>
-                      </div>
-                      <div class="product_content">
-                        <h4>Hair Shampoo</h4>
-                        <p>Professional shampoo for all hair types.</p>
-                        <span class="product_price">$13.99</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-              <div class="view_all_wrapper text-center mt-4">
-                <a href="products.html" class="view_all_btn"
-                  >View All Products</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.products_section -->
-
-    <section id="appointment" class="book_section padding">
-      <div class="book_bg"></div>
-      <div class="map_pattern"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 offset-md-6">
-            <form
-              id="appointment_form"
-              novalidate
-              class="form-horizontal appointment_form"
-            >
-              <div class="book_content">
-                <h2>Make an appointment</h2>
-                <p>
-                  Barber is a person whose occupation is mainly to cut dress
-                  groom <br />style and shave men's and boys hair.
-                </p>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6 padding-10">
-                  <input
-                    type="text"
-                    id="app_name"
-                    name="app_name"
-                    class="form-control"
-                    placeholder="Name"
-                    required
-                  />
-                  <div
-                    id="name-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-                <div class="col-md-6 padding-10">
-                  <input
-                    type="email"
-                    id="app_email"
-                    name="app_email"
-                    class="form-control"
-                    placeholder="Your Email"
-                    required
-                  />
-                  <div
-                    id="email-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6 padding-10">
-                  <input
-                    type="text"
-                    id="app_phone"
-                    name="app_phone"
-                    class="form-control"
-                    placeholder="Your Phone No"
-                    required
-                  />
-                  <div
-                    id="phone-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-                <div class="col-md-6 padding-10">
-                  <select
-                    class="form-control"
-                    id="app_barbers"
-                    name="app_barbers"
-                  >
-                    <option value="default" disabled selected hidden>
-                      Choose Barbers
-                    </option>
-                  </select>
-                  <div
-                    id="barbers-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6 padding-10">
-                  <select
-                    class="form-control"
-                    id="app_services"
-                    name="app_services"
-                  >
-                    <option value="default" disabled selected hidden>
-                      Choose Service
-                    </option>
-                  </select>
-                  <div
-                    id="services-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-                <div class="col-md-6 padding-10">
-                  <input
-                    type="date"
-                    id="app_date"
-                    name="app_date"
-                    class="form-control"
-                    required
-                  />
-                  <div
-                    id="date-error"
-                    class="invalid-feedback"
-                    style="display: none"
-                  ></div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6 padding-10">
-                  <div class="time-selector-wrapper">
-                    <div class="time-dropdown">
-                      <input
-                        type="text"
-                        id="app_time_display"
-                        class="form-control"
-                        placeholder="Choose Time"
-                        readonly
-                        onclick="toggleTimeOptions()"
-                      />
-                      <input
-                        type="hidden"
-                        id="app_time"
-                        name="app_time"
-                        required
-                      />
-                      <div
-                        id="time-error"
-                        class="invalid-feedback"
-                        style="display: none"
-                      ></div>
-                      <div
-                        id="time-options"
-                        class="time-options"
-                        style="
-                          display: none;
-                          max-height: 200px;
-                          overflow-y: auto;
-                          border: 1px solid #ddd;
-                          background: white;
-                          position: absolute;
-                          width: 100%;
-                          z-index: 1000;
-                        "
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 padding-10"></div>
-              </div>
-              <button id="app_submit" class="default_btn" type="submit">
-                Make Appointment
-              </button>
-              <div id="msg-status" class="alert" role="alert"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.book_section -->
-
-    <section id="gallery" class="gallery_section bg-grey padding">
-      <div class="container">
-        <div
-          class="section_heading text-center mb-40 wow fadeInUp"
-          data-wow-delay="300ms"
-        >
-          <h3>Our Work Gallery</h3>
-          <h2>Gallery</h2>
-          <div class="heading-line"></div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="portfolio_items row">
-              <div
-                class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
-                data-wow-delay="200ms"
-              >
-                <div class="gallery_item">
-                  <img src="img/portfolio-1.jpg" alt="Haircut Gallery" />
-                  <div class="gallery_overlay">
-                    <div class="gallery_content">
-                      <h4>Classic Haircut</h4>
-                      <p>Professional haircut service</p>
-                      <a
-                        href="img/portfolio-1.jpg"
-                        class="img_popup venobox"
-                        data-gall="gallery"
-                      >
-                        <i class="ti-plus"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
-                data-wow-delay="300ms"
-              >
-                <div class="gallery_item">
-                  <img src="img/portfolio-2.jpg" alt="Beard Styling" />
-                  <div class="gallery_overlay">
-                    <div class="gallery_content">
-                      <h4>Beard Styling</h4>
-                      <p>Expert beard trimming and styling</p>
-                      <a
-                        href="img/portfolio-2.jpg"
-                        class="img_popup venobox"
-                        data-gall="gallery"
-                      >
-                        <i class="ti-plus"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
-                data-wow-delay="400ms"
-              >
-                <div class="gallery_item">
-                  <img src="img/portfolio-3.jpg" alt="Smooth Shave" />
-                  <div class="gallery_overlay">
-                    <div class="gallery_content">
-                      <h4>Smooth Shave</h4>
-                      <p>Traditional wet shave experience</p>
-                      <a
-                        href="img/portfolio-3.jpg"
-                        class="img_popup venobox"
-                        data-gall="gallery"
-                      >
-                        <i class="ti-plus"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
-                data-wow-delay="500ms"
-              >
-                <div class="gallery_item">
-                  <img src="img/portfolio-4.jpg" alt="Hair Styling" />
-                  <div class="gallery_overlay">
-                    <div class="gallery_content">
-                      <h4>Hair Styling</h4>
-                      <p>Modern hair styling techniques</p>
-                      <a
-                        href="img/portfolio-4.jpg"
-                        class="img_popup venobox"
-                        data-gall="gallery"
-                      >
-                        <i class="ti-plus"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
-                data-wow-delay="600ms"
-              >
-                <div class="gallery_item">
-                  <img src="img/portfolio-5.jpg" alt="Premium Haircut" />
-                  <div class="gallery_overlay">
-                    <div class="gallery_content">
-                      <h4>Premium Haircut</h4>
-                      <p>Luxury haircut experience</p>
-                      <a
-                        href="img/portfolio-5.jpg"
-                        class="img_popup venobox"
-                        data-gall="gallery"
-                      >
-                        <i class="ti-plus"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
-                data-wow-delay="700ms"
-              >
-                <div class="gallery_item">
-                  <img src="img/portfolio-6.jpg" alt="Beard Care" />
-                  <div class="gallery_overlay">
-                    <div class="gallery_content">
-                      <h4>Beard Care</h4>
-                      <p>Complete beard care service</p>
-                      <a
-                        href="img/portfolio-6.jpg"
-                        class="img_popup venobox"
-                        data-gall="gallery"
-                      >
-                        <i class="ti-plus"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--/. gallery_section -->
-
-    <section id="team" class="team_section bd-bottom padding">
-      <div class="container">
-        <div
-          class="section_heading text-center mb-40 wow fadeInUp"
-          data-wow-delay="300ms"
-        >
-          <h3>Trendy Salon &amp; Spa</h3>
-          <h2>Our Barbers</h2>
-          <div class="heading-line"></div>
-        </div>
-        <ul class="team_members row d-flex justify-content-around">
-          <li
-            class="col-lg-3 col-md-6 sm-padding wow fadeInUp"
-            data-wow-delay="200ms"
+          <img src="img/logo.png" alt="TRIMIUM" class="w-24 h-16" />
+          <button
+            id="mobile-menu-close"
+            class="text-white hover:text-primary transition-colors"
           >
-            <div class="team_member">
-              <img src="img/mo_photo.jpeg" alt="Team Member" />
-              <div class="overlay">
-                <h3>Mohammed</h3>
-                <p>Owner & Barber</p>
+            <span class="material-icons text-3xl">close</span>
+          </button>
+        </div>
+        <!-- Mobile Menu Navigation -->
+        <nav class="flex-1 flex flex-col justify-center px-6 py-8 space-y-6">
+          <a
+            class="text-white text-xl font-body hover:text-primary transition-colors py-3 border-b border-white/10"
+            href="#header"
+            onclick="closeMobileMenu()"
+          >
+            Home
+          </a>
+          <a
+            class="text-white text-xl font-body hover:text-primary transition-colors py-3 border-b border-white/10"
+            href="#pricing"
+            onclick="closeMobileMenu()"
+          >
+            Pricing
+          </a>
+          <a
+            class="text-white text-xl font-body hover:text-primary transition-colors py-3 border-b border-white/10"
+            href="#products"
+            onclick="closeMobileMenu()"
+          >
+            Our Products
+          </a>
+          <a
+            class="text-white text-xl font-body hover:text-primary transition-colors py-3 border-b border-white/10"
+            href="#gallery"
+            onclick="closeMobileMenu()"
+          >
+            Gallery
+          </a>
+          <a
+            class="text-white text-xl font-body hover:text-primary transition-colors py-3 border-b border-white/10"
+            href="#team"
+            onclick="closeMobileMenu()"
+          >
+            Our Team
+          </a>
+          <a
+            class="text-white text-xl font-body hover:text-primary transition-colors py-3 border-b border-white/10"
+            href="#contact"
+            onclick="closeMobileMenu()"
+          >
+            Contact
+          </a>
+          <a
+            class="bg-primary text-white py-3 px-6 rounded-full hover:opacity-90 transition-opacity font-body text-center mt-4"
+            href="#appointment"
+            onclick="closeMobileMenu()"
+          >
+            Make Appointment
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-[600px] flex items-center justify-center text-center text-white hero-section"
+    >
+      <div class="absolute inset-0 bg-black">
+        <img
+          alt="Stylish interior of a modern barber shop"
+          class="w-full h-full object-cover opacity-50"
+          src="img/img4.jpeg"
+        />
+      </div>
+      <div class="relative z-10 p-6">
+        <p class="font-body text-lg md:text-xl tracking-wider text-gray-300">
+          Its Not Just a Haircut, Its an Experience.
+        </p>
+        <h2
+          class="font-display text-5xl md:text-7xl lg:text-8xl font-bold my-4 leading-tight text-white"
+        >
+          Where Men Want<br />To Look Their Very Best.
+        </h2>
+        <p class="font-body max-w-2xl mx-auto text-gray-300 mb-8">
+          Our barbershop is the territory created purely for males who
+          appreciate premium quality, time and flawless look.
+        </p>
+        <a
+          class="bg-primary text-white py-3 px-8 rounded-full hover:opacity-90 transition-opacity text-lg font-body"
+          href="#appointment"
+        >
+          Make Appointment
+        </a>
+      </div>
+    </section>
+
+    <main>
+      <!-- Pricing Section -->
+      <section class="py-20 md:py-28" id="pricing">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <p class="text-primary font-body tracking-widest uppercase">
+              Our Premium Services
+            </p>
+            <h3
+              class="font-display text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white"
+            >
+              Our Pricing
+            </h3>
+            <div class="w-16 h-1 bg-primary mx-auto mt-4"></div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <div>
+              <div
+                class="inline-block bg-primary text-white py-2 px-5 mb-6 rounded-md font-body"
+              >
+                Standard Services
               </div>
-              <div class="mobile-info">
-                <h3>Mohammed</h3>
-                <p>Owner & Barber</p>
-              </div>
+              <ul class="space-y-6">
+                <li
+                  class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-4"
+                >
+                  <div>
+                    <h4
+                      class="font-display text-xl text-gray-900 dark:text-white"
+                    >
+                      Haircut
+                    </h4>
+                    <p class="text-sm">
+                      Includes professional haircut and hair wash on demand.
+                    </p>
+                  </div>
+                  <p class="font-display text-2xl text-primary pl-4">35 $</p>
+                </li>
+                <li
+                  class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-4"
+                >
+                  <div>
+                    <h4
+                      class="font-display text-xl text-gray-900 dark:text-white"
+                    >
+                      Haircut and Beard
+                    </h4>
+                    <p class="text-sm">
+                      Includes professional haircut and beard trim, beard
+                      hydration, and hair wash on demand.
+                    </p>
+                  </div>
+                  <p class="font-display text-2xl text-primary pl-4">44 $</p>
+                </li>
+                <li
+                  class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-4"
+                >
+                  <div>
+                    <h4
+                      class="font-display text-xl text-gray-900 dark:text-white"
+                    >
+                      Student Haircut
+                    </h4>
+                    <p class="text-sm">
+                      Includes professional haircut and hair wash on demand.
+                    </p>
+                  </div>
+                  <p class="font-display text-2xl text-primary pl-4">30 $</p>
+                </li>
+                <li class="flex justify-between items-start">
+                  <div>
+                    <h4
+                      class="font-display text-xl text-gray-900 dark:text-white"
+                    >
+                      Kids Haircut
+                    </h4>
+                    <p class="text-sm">Includes professional haircut.</p>
+                  </div>
+                  <p class="font-display text-2xl text-primary pl-4">25 $</p>
+                </li>
+              </ul>
             </div>
-          </li>
-          <li
-            class="col-lg-3 col-md-6 sm-padding wow fadeInUp"
+            <div>
+              <div
+                class="inline-block bg-primary text-white py-2 px-5 mb-6 rounded-md font-body"
+              >
+                TRIMIUM Services
+              </div>
+              <ul class="space-y-6">
+                <li
+                  class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-4"
+                >
+                  <div>
+                    <h4
+                      class="font-display text-xl text-gray-900 dark:text-white"
+                    >
+                      TRIMIUM Haircut
+                    </h4>
+                    <p class="text-sm">
+                      Includes professional haircut and facial care (wash and
+                      hydration), small facial massage, and hair wash.
+                    </p>
+                  </div>
+                  <p class="font-display text-2xl text-primary pl-4">50 $</p>
+                </li>
+                <li class="flex justify-between items-start">
+                  <div>
+                    <h4
+                      class="font-display text-xl text-gray-900 dark:text-white"
+                    >
+                      TRIMIUM Haircut and Beard
+                    </h4>
+                    <p class="text-sm">
+                      Includes professional haircut and beard trim, beard
+                      hydration, and facial care (wash and hydration).
+                    </p>
+                  </div>
+                  <p class="font-display text-2xl text-primary pl-4">65 $</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section
+        id="products"
+        class="py-12 sm:py-16 md:py-20 lg:py-28 bg-white dark:bg-gray-900"
+      >
+        <div class="container mx-auto px-4 sm:px-6">
+          <div
+            class="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 wow fadeInUp"
             data-wow-delay="300ms"
           >
-            <div class="team_member">
-              <img src="img/ammar_photo.jpeg" alt="Team Member" />
-              <div class="overlay">
-                <h3>Ammar</h3>
-                <p>Barber</p>
-              </div>
-              <div class="mobile-info">
-                <h3>Ammar</h3>
-                <p>Barber</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <!-- /.team_members -->
-      </div>
-    </section>
-    <!-- /.team_section -->
-
-    <section id="contact" class="comments_section padding">
-      <div class="container">
-        <div
-          class="section_heading text-center mb-40 wow fadeInUp"
-          data-wow-delay="300ms"
-        >
-          <h3>We Value Your Feedback</h3>
-          <h2>Comments & Questions</h2>
-          <div class="heading-line"></div>
-        </div>
-        <div class="row">
-          <div class="col-lg-8 offset-lg-2">
-            <div class="comments_form_wrapper">
-              <form action="#" method="post" class="comments_form">
-                <div class="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    class="form-control"
-                    placeholder="Your Email"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <textarea
-                    name="message"
-                    class="form-control"
-                    rows="6"
-                    placeholder="Your Comments or Questions..."
-                    required
-                  ></textarea>
-                </div>
-                <div class="form-group text-center">
-                  <button type="submit" class="default_btn">
-                    Send Comment
-                  </button>
-                </div>
-              </form>
-            </div>
+            <p
+              class="text-primary font-body tracking-widest uppercase text-xs sm:text-sm"
+            >
+              Premium Quality Products
+            </p>
+            <h3
+              class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white"
+            >
+              Our Products
+            </h3>
+            <div class="w-16 h-1 bg-primary mx-auto mt-4"></div>
           </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.comments_section -->
-
-    <section class="widget_section padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 sm-padding">
-            <div class="footer_widget">
-              <img class="mb-15" src="img/logo.png" alt="Brand" />
-              <ul class="widget_social">
+          <div class="w-full">
+            <div class="products_wrapper relative">
+              <ul id="products_carousel" class="owl-carousel">
                 <li>
-                  <a href="#"><i class="social_facebook"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="social_twitter"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="social_googleplus"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="social_instagram"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="social_linkedin"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 sm-padding">
-            <div class="footer_widget">
-              <h3>Headquaters</h3>
-              <p>962 Fifth Avenue, 3rd Floor New York, NY10022</p>
-              <p>Hello@dynamiclayers.net <br />(+123) 456 789 101</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 sm-padding">
-            <div class="footer_widget">
-              <h3>Opening Hours</h3>
-              <ul class="opening_time">
-                <li>Monday - Friday 11:30am - 2:008pm</li>
-                <li>Saturday – Monday: 9am – 8pm</li>
-                <li>Monday - Friday 5:30am - 11:008pm</li>
-                <li>Saturday - Sunday 4:30am - 1:00pm</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 sm-padding">
-            <div class="footer_widget">
-              <h3>Google Reviews</h3>
-              <div class="google_reviews">
-                <div class="review_actions">
-                  <a href="#" class="google_review_btn">
-                    <i class="social_googleplus"></i>
-                    Share Your Experience
+                  <a href="products.html" class="block group">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+                    >
+                      <div
+                        class="relative overflow-hidden h-48 sm:h-56 md:h-64 lg:h-72"
+                      >
+                        <img
+                          src="img/product.png"
+                          alt="Premium Hair Gel"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          class="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <span
+                            class="bg-white text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-xs sm:text-sm border-2 border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                          >
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+                        <h4
+                          class="font-display text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white"
+                        >
+                          Premium Hair Gel
+                        </h4>
+                        <p
+                          class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-5 sm:leading-6"
+                        >
+                          Professional styling gel for perfect hold and shine.
+                        </p>
+                        <span
+                          class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#c4803d] to-[#b26f36] bg-clip-text text-transparent"
+                        >
+                          $15.99
+                        </span>
+                      </div>
+                    </div>
                   </a>
-                  <p class="review_help_text">
-                    Help others by sharing your experience with us
-                  </p>
+                </li>
+                <li>
+                  <a href="products.html" class="block group">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+                    >
+                      <div
+                        class="relative overflow-hidden h-48 sm:h-56 md:h-64 lg:h-72"
+                      >
+                        <img
+                          src="img/product.png"
+                          alt="Beard Oil"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          class="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <span
+                            class="bg-white text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-xs sm:text-sm border-2 border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                          >
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+                        <h4
+                          class="font-display text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white"
+                        >
+                          Beard Oil
+                        </h4>
+                        <p
+                          class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-5 sm:leading-6"
+                        >
+                          Natural beard oil for soft and healthy facial hair.
+                        </p>
+                        <span
+                          class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#c4803d] to-[#b26f36] bg-clip-text text-transparent"
+                        >
+                          $12.99
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="products.html" class="block group">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+                    >
+                      <div
+                        class="relative overflow-hidden h-48 sm:h-56 md:h-64 lg:h-72"
+                      >
+                        <img
+                          src="img/product.png"
+                          alt="Shaving Cream"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          class="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <span
+                            class="bg-white text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-xs sm:text-sm border-2 border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                          >
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+                        <h4
+                          class="font-display text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white"
+                        >
+                          Shaving Cream
+                        </h4>
+                        <p
+                          class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-5 sm:leading-6"
+                        >
+                          Luxury shaving cream for smooth and comfortable shave.
+                        </p>
+                        <span
+                          class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#c4803d] to-[#b26f36] bg-clip-text text-transparent"
+                        >
+                          $18.99
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="products.html" class="block group">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+                    >
+                      <div
+                        class="relative overflow-hidden h-48 sm:h-56 md:h-64 lg:h-72"
+                      >
+                        <img
+                          src="img/product.png"
+                          alt="Hair Pomade"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          class="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <span
+                            class="bg-white text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-xs sm:text-sm border-2 border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                          >
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+                        <h4
+                          class="font-display text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white"
+                        >
+                          Hair Pomade
+                        </h4>
+                        <p
+                          class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-5 sm:leading-6"
+                        >
+                          Classic pomade for vintage hairstyles and strong hold.
+                        </p>
+                        <span
+                          class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#c4803d] to-[#b26f36] bg-clip-text text-transparent"
+                        >
+                          $14.99
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="products.html" class="block group">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+                    >
+                      <div
+                        class="relative overflow-hidden h-48 sm:h-56 md:h-64 lg:h-72"
+                      >
+                        <img
+                          src="img/product.png"
+                          alt="Face Moisturizer"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          class="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <span
+                            class="bg-white text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-xs sm:text-sm border-2 border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                          >
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+                        <h4
+                          class="font-display text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white"
+                        >
+                          Face Moisturizer
+                        </h4>
+                        <p
+                          class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-5 sm:leading-6"
+                        >
+                          Daily moisturizer for healthy and refreshed skin.
+                        </p>
+                        <span
+                          class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#c4803d] to-[#b26f36] bg-clip-text text-transparent"
+                        >
+                          $16.99
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="products.html" class="block group">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg transition-all duration-400 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+                    >
+                      <div
+                        class="relative overflow-hidden h-48 sm:h-56 md:h-64 lg:h-72"
+                      >
+                        <img
+                          src="img/product.png"
+                          alt="Hair Shampoo"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          class="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <span
+                            class="bg-white text-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-xs sm:text-sm border-2 border-white transition-all duration-300 hover:bg-transparent hover:text-white"
+                          >
+                            View Details
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-4 sm:p-5 md:p-6 lg:p-8 text-center">
+                        <h4
+                          class="font-display text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white"
+                        >
+                          Hair Shampoo
+                        </h4>
+                        <p
+                          class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 leading-5 sm:leading-6"
+                        >
+                          Professional shampoo for all hair types.
+                        </p>
+                        <span
+                          class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#c4803d] to-[#b26f36] bg-clip-text text-transparent"
+                        >
+                          $13.99
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <div class="text-center mt-6 sm:mt-8 md:mt-10">
+                <a
+                  href="products.html"
+                  class="inline-block bg-primary text-white px-4 py-2.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base"
+                >
+                  View All Products
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Appointment Section -->
+      <section id="appointment" class="relative py-20 md:py-28 text-white">
+        <div class="absolute inset-0 bg-black">
+          <img
+            alt="Barber styling a client's hair"
+            class="w-full h-full object-cover opacity-30"
+            src="img/book-bg.jpg"
+          />
+        </div>
+        <div
+          class="relative container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+        >
+          <div>
+            <h3 class="font-display text-4xl md:text-5xl font-bold text-white">
+              Make an appointment
+            </h3>
+            <p class="mt-4 mb-8 max-w-md">
+              A barber is a person whose occupation is mainly to cut, dress,
+              groom, style and shave men's and boys' hair.
+            </p>
+          </div>
+          <form
+            id="appointment_form"
+            class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            novalidate
+          >
+            <input
+              type="text"
+              id="app_name"
+              name="app_name"
+              class="w-full bg-white/10 border border-white/20 rounded-md p-3 placeholder-white/50 focus:ring-primary focus:border-primary text-white"
+              placeholder="Name"
+              required
+            />
+            <input
+              type="email"
+              id="app_email"
+              name="app_email"
+              class="w-full bg-white/10 border border-white/20 rounded-md p-3 placeholder-white/50 focus:ring-primary focus:border-primary text-white"
+              placeholder="Your Email"
+              required
+            />
+            <input
+              type="tel"
+              id="app_phone"
+              name="app_phone"
+              class="w-full bg-white/10 border border-white/20 rounded-md p-3 placeholder-white/50 focus:ring-primary focus:border-primary text-white"
+              placeholder="Your Phone No"
+              required
+            />
+            <select
+              id="app_barbers"
+              name="app_barbers"
+              class="w-full bg-white/10 border border-white/20 rounded-md p-3 text-white focus:ring-primary focus:border-primary [color-scheme:dark]"
+            >
+              <option
+                value="default"
+                disabled
+                selected
+                hidden
+                style="color: rgba(255, 255, 255, 0.5)"
+              >
+                Choose Barbers
+              </option>
+            </select>
+            <select
+              id="app_services"
+              name="app_services"
+              class="w-full bg-white/10 border border-white/20 rounded-md p-3 text-white focus:ring-primary focus:border-primary [color-scheme:dark]"
+            >
+              <option
+                value="default"
+                disabled
+                selected
+                hidden
+                style="color: rgba(255, 255, 255, 0.5)"
+              >
+                Choose Service
+              </option>
+            </select>
+            <input
+              type="date"
+              id="app_date"
+              name="app_date"
+              class="w-full bg-white/10 border border-white/20 rounded-md p-3 placeholder-white/50 focus:ring-primary focus:border-primary text-white [color-scheme:dark]"
+              required
+            />
+            <div class="time-selector-wrapper sm:col-span-2">
+              <div class="time-dropdown">
+                <input
+                  type="text"
+                  id="app_time_display"
+                  class="w-full bg-white/10 border border-white/20 rounded-md p-3 placeholder-white/50 focus:ring-primary focus:border-primary text-white cursor-pointer"
+                  placeholder="Choose Time"
+                  readonly
+                  onclick="toggleTimeOptions()"
+                />
+                <input type="hidden" id="app_time" name="app_time" required />
+                <div
+                  id="time-options"
+                  class="time-options"
+                  style="display: none"
+                ></div>
+              </div>
+            </div>
+            <div
+              id="name-error"
+              class="invalid-feedback text-red-300 text-sm col-span-1 sm:col-span-2"
+              style="display: none"
+            ></div>
+            <div
+              id="email-error"
+              class="invalid-feedback text-red-300 text-sm col-span-1 sm:col-span-2"
+              style="display: none"
+            ></div>
+            <div
+              id="phone-error"
+              class="invalid-feedback text-red-300 text-sm col-span-1 sm:col-span-2"
+              style="display: none"
+            ></div>
+            <div
+              id="barbers-error"
+              class="invalid-feedback text-red-300 text-sm col-span-1 sm:col-span-2"
+              style="display: none"
+            ></div>
+            <div
+              id="services-error"
+              class="invalid-feedback text-red-300 text-sm col-span-1 sm:col-span-2"
+              style="display: none"
+            ></div>
+            <div
+              id="date-error"
+              class="invalid-feedback text-red-300 text-sm col-span-1 sm:col-span-2"
+              style="display: none"
+            ></div>
+            <div
+              id="time-error"
+              class="invalid-feedback text-red-300 text-sm sm:col-span-2"
+              style="display: none"
+            ></div>
+            <button
+              id="app_submit"
+              class="w-full bg-primary text-white py-3 rounded-full hover:opacity-90 transition-opacity sm:col-span-2 font-body"
+              type="submit"
+            >
+              Make Appointment
+            </button>
+            <div
+              id="msg-status"
+              class="alert sm:col-span-2 mt-2 p-3 rounded-md text-sm"
+              role="alert"
+              style="display: none"
+            ></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="gallery_section bg-grey padding">
+        <div class="container">
+          <div
+            class="section_heading text-center mb-40 wow fadeInUp"
+            data-wow-delay="300ms"
+          >
+            <h3>Our Work Gallery</h3>
+            <h2>Gallery</h2>
+            <div class="heading-line"></div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="portfolio_items row">
+                <div
+                  class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
+                  data-wow-delay="200ms"
+                >
+                  <div class="gallery_item">
+                    <img src="img/portfolio-1.jpg" alt="Haircut Gallery" />
+                    <div class="gallery_overlay">
+                      <div class="gallery_content">
+                        <h4>Classic Haircut</h4>
+                        <p>Professional haircut service</p>
+                        <a
+                          href="img/portfolio-1.jpg"
+                          class="img_popup venobox"
+                          data-gall="gallery"
+                        >
+                          <i class="ti-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
+                  data-wow-delay="300ms"
+                >
+                  <div class="gallery_item">
+                    <img src="img/portfolio-2.jpg" alt="Beard Styling" />
+                    <div class="gallery_overlay">
+                      <div class="gallery_content">
+                        <h4>Beard Styling</h4>
+                        <p>Expert beard trimming and styling</p>
+                        <a
+                          href="img/portfolio-2.jpg"
+                          class="img_popup venobox"
+                          data-gall="gallery"
+                        >
+                          <i class="ti-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
+                  data-wow-delay="400ms"
+                >
+                  <div class="gallery_item">
+                    <img src="img/portfolio-3.jpg" alt="Smooth Shave" />
+                    <div class="gallery_overlay">
+                      <div class="gallery_content">
+                        <h4>Smooth Shave</h4>
+                        <p>Traditional wet shave experience</p>
+                        <a
+                          href="img/portfolio-3.jpg"
+                          class="img_popup venobox"
+                          data-gall="gallery"
+                        >
+                          <i class="ti-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
+                  data-wow-delay="500ms"
+                >
+                  <div class="gallery_item">
+                    <img src="img/portfolio-4.jpg" alt="Hair Styling" />
+                    <div class="gallery_overlay">
+                      <div class="gallery_content">
+                        <h4>Hair Styling</h4>
+                        <p>Modern hair styling techniques</p>
+                        <a
+                          href="img/portfolio-4.jpg"
+                          class="img_popup venobox"
+                          data-gall="gallery"
+                        >
+                          <i class="ti-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
+                  data-wow-delay="600ms"
+                >
+                  <div class="gallery_item">
+                    <img src="img/portfolio-5.jpg" alt="Premium Haircut" />
+                    <div class="gallery_overlay">
+                      <div class="gallery_content">
+                        <h4>Premium Haircut</h4>
+                        <p>Luxury haircut experience</p>
+                        <a
+                          href="img/portfolio-5.jpg"
+                          class="img_popup venobox"
+                          data-gall="gallery"
+                        >
+                          <i class="ti-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-4 col-md-6 sm-padding single_item wow fadeInUp"
+                  data-wow-delay="700ms"
+                >
+                  <div class="gallery_item">
+                    <img src="img/portfolio-6.jpg" alt="Beard Care" />
+                    <div class="gallery_overlay">
+                      <div class="gallery_content">
+                        <h4>Beard Care</h4>
+                        <p>Complete beard care service</p>
+                        <a
+                          href="img/portfolio-6.jpg"
+                          class="img_popup venobox"
+                          data-gall="gallery"
+                        >
+                          <i class="ti-plus"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- /.widget_section -->
+      </section>
 
-    <footer class="footer_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 xs-padding">
-            <div class="copyright">
-              &copy;
-              <script type="text/javascript">
-                document.write(new Date().getFullYear());
-              </script>
-              Barber Shop Powered by DynamicLayers
+      <!-- Team Section -->
+      <section class="py-20 md:py-28 bg-white dark:bg-gray-900" id="team">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <p class="text-primary font-body tracking-widest uppercase">
+              Trendy Salon &amp; Spa
+            </p>
+            <h3
+              class="font-display text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white"
+            >
+              Our Barbers
+            </h3>
+            <div class="w-16 h-1 bg-primary mx-auto mt-4"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            <div class="text-center">
+              <img
+                alt="Portrait of a professional barber"
+                class="w-full h-96 object-cover rounded-lg mb-4"
+                src="img/mo_photo.jpeg"
+              />
+              <h4 class="font-display text-2xl text-gray-900 dark:text-white">
+                Mohammed
+              </h4>
+              <p class="text-primary font-body">Owner & Barber</p>
+            </div>
+            <div class="text-center">
+              <img
+                alt="Portrait of another professional barber"
+                class="w-full h-96 object-cover rounded-lg mb-4"
+                src="img/ammar_photo.jpeg"
+              />
+              <h4 class="font-display text-2xl text-gray-900 dark:text-white">
+                Ammar
+              </h4>
+              <p class="text-primary font-body">Barber</p>
             </div>
           </div>
-          <div class="col-md-6 xs-padding">
-            <ul class="footer_social">
-              <li><a href="#">Orders</a></li>
-              <li><a href="#">Terms</a></li>
-              <li><a href="#">Report Problem</a></li>
+        </div>
+      </section>
+
+      <!-- Comments Section -->
+      <section class="py-20 md:py-28" id="contact">
+        <div class="container mx-auto px-6 max-w-3xl">
+          <div class="text-center mb-12">
+            <p class="text-primary font-body tracking-widest uppercase">
+              We Value Your Feedback
+            </p>
+            <h3
+              class="font-display text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white"
+            >
+              Comments &amp; Questions
+            </h3>
+            <div class="w-16 h-1 bg-primary mx-auto mt-4"></div>
+          </div>
+          <form action="#" method="post" class="comments_form space-y-6">
+            <input
+              type="email"
+              name="email"
+              class="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 rounded-md p-3 focus:ring-primary focus:border-primary"
+              placeholder="Your Email"
+              required
+            />
+            <textarea
+              name="message"
+              class="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 rounded-md p-3 focus:ring-primary focus:border-primary"
+              rows="5"
+              placeholder="Your Comments or Questions..."
+              required
+            ></textarea>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="bg-primary text-white py-3 px-8 rounded-full hover:opacity-90 transition-opacity font-body"
+              >
+                Send Comment
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 font-body">
+      <div class="container mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div>
+            <div class="flex items-center mb-4">
+              <span class="material-icons text-white text-3xl"
+                >content_cut</span
+              >
+              <h1 class="text-2xl font-display text-white ml-2">TRIMIUM</h1>
+            </div>
+            <p class="text-sm">
+              Experience the art of grooming in an atmosphere of luxury and
+              tradition.
+            </p>
+            <div class="flex space-x-4 mt-4">
+              <a class="hover:text-primary transition-colors" href="#">f</a>
+              <a class="hover:text-primary transition-colors" href="#">t</a>
+              <a class="hover:text-primary transition-colors" href="#">in</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-display text-xl text-white mb-4">Headquarters</h4>
+            <p class="text-sm">962 Fifth Avenue, 3rd Floor New York, NY10022</p>
+            <p class="text-sm mt-2">Hello@dynamiclayers.net</p>
+            <p class="text-sm mt-2">(+123) 456 789 101</p>
+          </div>
+          <div>
+            <h4 class="font-display text-xl text-white mb-4">Opening Hours</h4>
+            <ul class="text-sm space-y-2">
+              <li>Monday - Friday: 11:30am - 2:00pm</li>
+              <li>Saturday - Monday: 9am - 8pm</li>
+              <li>Sunday: 11:00am - 11:00pm</li>
             </ul>
+          </div>
+          <div>
+            <h4 class="font-display text-xl text-white mb-4">Google Reviews</h4>
+            <a
+              class="flex items-center bg-primary text-white py-2 px-4 rounded-full hover:opacity-90 transition-opacity font-body"
+              href="#"
+            >
+              <span class="material-icons mr-2">rate_review</span>
+              Share Your Experience
+            </a>
+            <p class="text-xs mt-2">
+              Help others by sharing your experience with us.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800">
+        <div
+          class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-sm"
+        >
+          <p>
+            ©
+            <script type="text/javascript">
+              document.write(new Date().getFullYear());
+            </script>
+            Barber Shop. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a class="hover:text-primary transition-colors" href="#">ORDERS</a>
+            <a class="hover:text-primary transition-colors" href="#">TERMS</a>
+            <a class="hover:text-primary transition-colors" href="#"
+              >REPORT PROBLEM</a
+            >
           </div>
         </div>
       </div>
     </footer>
-    <!-- /.footer_section -->
 
-    <a data-scroll href="#header" id="scroll-to-top"
-      ><i class="arrow_up"></i
-    ></a>
+    <!-- Scroll to Top -->
+    <a
+      href="#header"
+      id="scroll-to-top"
+      class="fixed bottom-8 right-8 bg-primary text-white p-2 rounded-full hover:opacity-90 transition-opacity shadow-lg z-50"
+      style="display: none"
+    >
+      <span class="material-icons mb-4">arrow_upward</span>
+    </a>
 
     <!-- jQuery Lib -->
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
@@ -923,12 +1427,8 @@
     <script src="js/vendor/venobox.min.js"></script>
     <!-- ajaxchimp JS -->
     <script src="js/vendor/jquery.ajaxchimp.min.js"></script>
-    <!--Slicknav-->
-    <script src="js/vendor/jquery.slicknav.min.js"></script>
     <!--Nice Select-->
     <script src="js/vendor/jquery.nice-select.min.js"></script>
-    <!-- YTPlayer JS -->
-    <script src="js/vendor/jquery.mb.YTPlayer.min.js"></script>
     <!-- Wow JS -->
     <script src="js/vendor/wow.min.js"></script>
     <!-- Contact JS -->
@@ -939,39 +1439,109 @@
     <script src="js/main.js" defer></script>
 
     <script>
+      // Preloader
+      $(window).on("load", function () {
+        $("#preloader").addClass("loaded");
+        setTimeout(function () {
+          $("#preloader").hide();
+        }, 500);
+      });
+
+      // Time selector functions
       function toggleTimeOptions() {
         var options = document.getElementById("time-options");
-        if (options.style.display === "none" || options.style.display === "") {
-          options.style.display = "block";
-        } else {
-          options.style.display = "none";
+        if (options) {
+          options.style.display = options.style.display === "none" || options.style.display === "" ? "block" : "none";
         }
       }
 
       function selectTime(value, display) {
         document.getElementById("app_time").value = value;
         document.getElementById("app_time_display").value = display;
-        document.getElementById("time-options").style.display = "none";
+        var timeOptions = document.getElementById("time-options");
+        if (timeOptions) timeOptions.style.display = "none";
       }
 
-      // Fermer la liste déroulante quand on clique ailleurs
+      // Close time dropdown when clicking outside
       document.addEventListener("click", function (event) {
         var timeDropdown = document.querySelector(".time-dropdown");
         var timeOptions = document.getElementById("time-options");
-
-        if (!timeDropdown.contains(event.target)) {
+        if (timeDropdown && !timeDropdown.contains(event.target) && timeOptions) {
           timeOptions.style.display = "none";
         }
       });
 
+      // Set minimum date to today
       document.addEventListener("DOMContentLoaded", function () {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayString = yesterday.toISOString().split("T")[0];
+        var today = new Date();
+        var todayString = today.toISOString().split("T")[0];
+        var dateInput = document.getElementById("app_date");
+        if (dateInput) {
+          dateInput.setAttribute("min", todayString);
+        }
+      });
 
-        document
-          .getElementById("app_date")
-          .setAttribute("min", yesterdayString);
+      // Sticky header and scroll to top
+      $(window).scroll(function () {
+        var scroll = $(window).scrollTop();
+        var header = $("#header");
+        var scrollTopBtn = $("#scroll-to-top");
+
+        // Sticky header
+        if (scroll > 50) {
+          header.addClass("scrolled");
+        } else {
+          header.removeClass("scrolled");
+        }
+
+        // Scroll to top button
+        if (scroll > 100) {
+          scrollTopBtn.fadeIn();
+        } else {
+          scrollTopBtn.fadeOut();
+        }
+      });
+
+      // Scroll to top click handler
+      $("#scroll-to-top").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 800);
+        return false;
+      });
+
+      // Mobile menu functions
+      function openMobileMenu() {
+        $("#mobile-menu").addClass("active");
+        $("body").addClass("menu-open");
+      }
+
+      function closeMobileMenu() {
+        $("#mobile-menu").removeClass("active");
+        $("body").removeClass("menu-open");
+      }
+
+      // Make function available globally
+      window.closeMobileMenu = closeMobileMenu;
+
+      // Mobile menu event handlers
+      $("#mobile-menu-btn").click(openMobileMenu);
+      $("#mobile-menu-close").click(closeMobileMenu);
+
+      // Close mobile menu when clicking outside
+      $(document).on("click", function (e) {
+        if (
+          $(e.target).closest("#mobile-menu").length === 0 &&
+          $(e.target).closest("#mobile-menu-btn").length === 0 &&
+          $("#mobile-menu").hasClass("active")
+        ) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close mobile menu on escape key
+      $(document).on("keydown", function (e) {
+        if (e.key === "Escape" && $("#mobile-menu").hasClass("active")) {
+          closeMobileMenu();
+        }
       });
     </script>
   </body>
