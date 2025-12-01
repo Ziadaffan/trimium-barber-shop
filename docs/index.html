@@ -220,6 +220,37 @@
         overflow: hidden;
       }
 
+      /* Mobile Menu Navigation Buttons */
+      #mobile-menu-prev,
+      #mobile-menu-next {
+        background: rgba(185, 139, 89, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(185, 139, 89, 0.4);
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      #mobile-menu-prev:hover,
+      #mobile-menu-next:hover {
+        background: rgba(185, 139, 89, 0.5);
+        border-color: rgba(185, 139, 89, 0.7);
+        transform: translateX(-50%) scale(1.1) !important;
+        box-shadow: 0 6px 20px rgba(185, 139, 89, 0.4);
+      }
+
+      #mobile-menu-prev:active,
+      #mobile-menu-next:active {
+        transform: translateX(-50%) scale(0.95) !important;
+      }
+
       /* Product section hover effects */
       #products .group:hover .group-hover\:scale-110 {
         transform: scale(1.15);
@@ -311,17 +342,25 @@
         box-shadow: 0 6px 20px rgba(185, 139, 89, 0.4);
       }
 
-      /* Hide navigation arrows on mobile */
-      @media (max-width: 767px) {
-        #products .owl-nav {
-          display: none !important;
-        }
-      }
 
-      /* Show navigation arrows on tablet and desktop */
-      @media (min-width: 768px) {
-        #products .owl-nav {
-          display: block !important;
+
+      /* Disable product hover effects on mobile */
+      @media (max-width: 767px) {
+        #products .group:hover .group-hover\:scale-110 {
+          transform: none !important;
+        }
+        #products .group:hover .group-hover\:-translate-y-2 {
+          transform: none !important;
+        }
+        #products .group:hover .group-hover\:shadow-2xl {
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+            0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+        }
+        #products .group:hover .group-hover\:opacity-100 {
+          opacity: 0 !important;
+        }
+        #products .group:hover .group-hover\:scale-110 img {
+          transform: none !important;
         }
       }
 
@@ -374,11 +413,11 @@
     <!-- Header -->
     <header
       id="header"
-      class="fixed top-0 left-0 right-0 z-50 p-6 md:px-12 bg-gradient-to-b from-black/50 to-transparent transition-all duration-300"
+      class="fixed top-0 left-0 right-0 z-50 px-4 py-2 md:px-12 bg-gradient-to-b from-black/50 to-transparent transition-all duration-300"
     >
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center">
-          <img src="img/logo.png" alt="TRIMIUM" class="w-30 h-20" />
+          <img src="img/logo.png" alt="TRIMIUM" class="w-24 h-16" />
         </div>
         <nav class="hidden md:flex items-center space-x-8 text-white">
           <a class="hover:text-primary transition-colors" href="#header"
@@ -504,7 +543,7 @@
           Its Not Just a Haircut, Its an Experience.
         </p>
         <h2
-          class="font-display text-5xl md:text-7xl lg:text-8xl font-bold my-4 leading-tight text-white"
+          class="font-display text-3xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold my-4 leading-tight text-white"
         >
           Where Men Want<br />To Look Their Very Best.
         </h2>
@@ -557,7 +596,7 @@
                       Includes professional haircut and hair wash on demand.
                     </p>
                   </div>
-                  <p class="font-display text-2xl text-primary pl-4">35 $</p>
+                  <p class="font-display text-2xl text-primary pl-4 whitespace-nowrap">35 $</p>
                 </li>
                 <li
                   class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-4"
@@ -573,7 +612,7 @@
                       hydration, and hair wash on demand.
                     </p>
                   </div>
-                  <p class="font-display text-2xl text-primary pl-4">44 $</p>
+                  <p class="font-display text-2xl text-primary pl-4 whitespace-nowrap">44 $</p>
                 </li>
                 <li
                   class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-4"
@@ -588,7 +627,7 @@
                       Includes professional haircut and hair wash on demand.
                     </p>
                   </div>
-                  <p class="font-display text-2xl text-primary pl-4">30 $</p>
+                  <p class="font-display text-2xl text-primary pl-4 whitespace-nowrap">30 $</p>
                 </li>
                 <li class="flex justify-between items-start">
                   <div>
@@ -599,7 +638,7 @@
                     </h4>
                     <p class="text-sm">Includes professional haircut.</p>
                   </div>
-                  <p class="font-display text-2xl text-primary pl-4">25 $</p>
+                  <p class="font-display text-2xl text-primary pl-4 whitespace-nowrap">25 $</p>
                 </li>
               </ul>
             </div>
@@ -624,7 +663,7 @@
                       hydration), small facial massage, and hair wash.
                     </p>
                   </div>
-                  <p class="font-display text-2xl text-primary pl-4">50 $</p>
+                  <p class="font-display text-2xl text-primary pl-4 whitespace-nowrap">50 $</p>
                 </li>
                 <li class="flex justify-between items-start">
                   <div>
@@ -638,7 +677,7 @@
                       hydration, and facial care (wash and hydration).
                     </p>
                   </div>
-                  <p class="font-display text-2xl text-primary pl-4">65 $</p>
+                  <p class="font-display text-2xl text-primary pl-4 whitespace-nowrap">65 $</p>
                 </li>
               </ul>
             </div>
@@ -1104,7 +1143,7 @@
       <section id="gallery" class="gallery_section bg-grey padding">
         <div class="container">
           <div
-            class="section_heading text-center mb-40 wow fadeInUp"
+            class="section_heading text-center mb-20 wow fadeInUp"
             data-wow-delay="300ms"
           >
             <h3>Our Work Gallery</h3>
@@ -1335,10 +1374,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <div class="flex items-center mb-4">
-              <span class="material-icons text-white text-3xl"
-                >content_cut</span
-              >
-              <h1 class="text-2xl font-display text-white ml-2">TRIMIUM</h1>
+              <img src="img/logo.png" alt="TRIMIUM" class="w-24 h-16" />
             </div>
             <p class="text-sm">
               Experience the art of grooming in an atmosphere of luxury and
@@ -1451,7 +1487,10 @@
       function toggleTimeOptions() {
         var options = document.getElementById("time-options");
         if (options) {
-          options.style.display = options.style.display === "none" || options.style.display === "" ? "block" : "none";
+          options.style.display =
+            options.style.display === "none" || options.style.display === ""
+              ? "block"
+              : "none";
         }
       }
 
@@ -1466,7 +1505,11 @@
       document.addEventListener("click", function (event) {
         var timeDropdown = document.querySelector(".time-dropdown");
         var timeOptions = document.getElementById("time-options");
-        if (timeDropdown && !timeDropdown.contains(event.target) && timeOptions) {
+        if (
+          timeDropdown &&
+          !timeDropdown.contains(event.target) &&
+          timeOptions
+        ) {
           timeOptions.style.display = "none";
         }
       });
