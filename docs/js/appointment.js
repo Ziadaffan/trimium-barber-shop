@@ -37,13 +37,14 @@ $(function () {
 
     $.ajax({
       type: "POST",
-      url: "http://localhost:3000/api/reservations",
+      url: `https://trimium-barber-shop-api.vercel.app/api/reservations`,
       data: formData,
     })
       .done(function (response) {
         $(formMessages).removeClass("alert-danger");
         $(formMessages).addClass("alert-success");
-        $(formMessages).text("Appointment booked successfully!");
+        $(formMessages).text("Thanks for your reservation!");
+        $(formMessages).show();
 
         resetForm();
         desabledInputs();

@@ -75,7 +75,7 @@
 
   function getBarbers() {
     $.ajax({
-      url: "http://localhost:3000/api/barbers",
+      url: `https://trimium-barber-shop-api.vercel.app/api/barbers`,
       type: "GET",
       cache: false,
       success: function (response) {
@@ -98,10 +98,9 @@
       },
     });
   }
-
   function getServices() {
     $.ajax({
-      url: "http://localhost:3000/api/services",
+      url: `https://trimium-barber-shop-api.vercel.app/api/services`,
       type: "GET",
       cache: false,
       success: function (response) {
@@ -127,7 +126,7 @@
 
   function getAvailableTimes(date) {
     $.ajax({
-      url: `http://localhost:3000/api/reservations/available-times`,
+      url: `https://trimium-barber-shop-api.vercel.app/api/reservations/available-times`,
       type: "POST",
       cache: false,
       data: {
@@ -137,11 +136,9 @@
       },
     })
       .done(function (response) {
-        console.log(response);
         displayAvailableTimes(response);
       })
       .fail(function (error) {
-        console.log("Erreur chargement horaires disponibles:", error);
         clearTimeOptions();
       });
   }
@@ -150,7 +147,6 @@
     const timeOptionsContainer = $("#time-options");
 
     if (timeOptionsContainer.length === 0) {
-      console.log("Time selector not found on this page");
       return;
     }
 
@@ -167,7 +163,7 @@
 
     if (times.length === 0) {
       timeOptionsContainer.append(
-        '<div class="time-option" style="padding: 10px; text-align: center; color: #999;">Aucun horaire disponible</div>'
+        `<div class="time-option" style="padding: 10px; text-align: center; color: #999;">Aucun horaire disponible. Au cas d'urgence veuillez appeler le 418-555-5555</div>`
       );
       return;
     }
@@ -217,10 +213,6 @@
     return `${displayHours.toString().padStart(2, "0")}:${minutes} ${period}`;
   }
 
-
-
-
-
   /*=========================================================================
     Isotope Active
 =========================================================================*/
@@ -253,7 +245,6 @@
   smoothScroll.init({
     offset: 60,
   });
-
 
   /*=========================================================================
     Products Carousel
@@ -297,7 +288,6 @@
     Active Nice Select
 =========================================================================*/
   $("select:not(#app_barbers, #app_services)").niceSelect();
-
 
   /*=========================================================================
     Active venobox
